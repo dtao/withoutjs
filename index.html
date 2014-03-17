@@ -8,21 +8,17 @@
 
 <body>
 
-<label id="wrapper">
+<label id="content-wrapper">
     <input name="nav-toggle" value="hidden" type="radio" />
 
-    <label id="show-nav-button">
+    <label id="nav-wrapper">
         <input name="nav-toggle" value="shown" type="radio" />
-
-        +
 
         <nav>
             <ul>
                 <li>
                     <label>
-                        <input name="section" value="first-section" type="radio" />
-
-                        First section
+                        <input name="section" value="first-section" type="radio" checked="checked" />
 
                         <section>
                             <h1>This is the first section</h1>
@@ -37,14 +33,14 @@
                                 mollit anim id est laborum.
                             </p>
                         </section>
+
+                        <span class="section-link">First section</span>
                     </label>
                 </li>
 
                 <li>
                     <label>
                         <input name="section" value="second-section" type="radio" />
-
-                        Second section
 
                         <section>
                             <h1>This is the second section</h1>
@@ -59,10 +55,14 @@
                                 mollit anim id est laborum.
                             </p>
                         </section>
+
+                        <span class="section-link">Second section</span>
                     </label>
                 </li>
             </ul>
         </nav>
+
+        <span id="show-nav">&equiv;</span>
     </label>
 </label>
 

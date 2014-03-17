@@ -6,7 +6,8 @@ input[type="radio"] {
   display: none;
 }
 
-#wrapper {
+/* Wrapper for the entire page. */
+#content-wrapper {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -16,15 +17,26 @@ input[type="radio"] {
   padding: 20px;
 }
 
-#show-nav-button {
+#show-nav {
   cursor: pointer;
 
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 20px;
+  height: 40px;
+  width: 40px;
 
-  padding: 1ex 1em;
-  border: 1px solid #000;
+  font-size: 125%;
+  font-weight: bold;
+  background-color: #eee;
+  border-radius: 20px;
+  line-height: 40px;
+  text-align: center;
+}
+
+#show-nav:hover {
+  color: #fff;
+  background-color: #bbb;
 }
 
 nav {
@@ -45,7 +57,7 @@ nav {
   transition: left 0.5s;
 }
 
-#show-nav-button input:checked + nav {
+#nav-wrapper input:checked + nav {
   left: 0;
 
   /* Slide in */
@@ -71,4 +83,18 @@ section {
 
 input[name="section"]:checked + section {
   display: block;
+}
+
+.section-link {
+  cursor: pointer;
+
+  padding: 0.5ex 0.5em;
+
+  display: block;
+  color: #789;
+}
+
+.section-link:hover {
+  color: #345;
+  background-color: #def;
 }
