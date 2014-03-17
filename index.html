@@ -2,8 +2,9 @@
 <html>
 
 <head>
-    <title>Nav without JS (WTF?)</title>
+    <title>Single-page nav without JS</title>
     <link rel="stylesheet" href="nav.css" />
+    <script src="http://danieltao.com/just-use-markdown/jum.js"></script>
 </head>
 
 <body>
@@ -18,45 +19,78 @@
             <ul>
                 <li>
                     <label>
-                        <input name="section" value="first-section" type="radio" checked="checked" />
+                        <input name="section" value="Introduction" type="radio" checked="checked" />
 
                         <section>
-                            <h1>This is the first section</h1>
+                            <script type="text/markdown"><!--
+                            # Nav without JS
 
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </p>
+                            This page is an illustration of a hack I came up a while ago, to provide
+                            familiar single-page navigation behavior (you know, click a link and the
+                            visible section changes) without JavaScript enabled.
+
+                            You can see for yourself that this doesn't require JS: just check the
+                            source (no `<script>` tags!). If you're still skeptical, go ahead and
+                            disable JavaScript in your browser and refresh the page.
+
+                            Of course, it's really just a gimmick because the hack *does* require a
+                            modern browser (for CSS3 support). Which means it almost certainly
+                            doesn't make sense to use in production.
+
+                            Anyway, the hack is one I haven't seen illustrated elsewhere. That
+                            doesn't mean no one else has come up with it. Go ahead and check out the
+                            next section to learn how it works.
+                            --></script>
                         </section>
 
-                        <span class="section-link">First section</span>
+                        <span class="section-link">Introduction</span>
                     </label>
                 </li>
 
                 <li>
                     <label>
-                        <input name="section" value="second-section" type="radio" />
+                        <input name="section" value="How it works" type="radio" />
 
                         <section>
-                            <h1>This is the second section</h1>
+                            <script type="text/markdown"><!--
+                            # How it works
 
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </p>
+                            There are basically three parts to this hack:
+
+                            1. You can conditionally style checkbox and radio input elements based
+                               on the `:checked` pseudo-selector.
+                            2. If you wrap a checkbox or radio input in a `<label>`, the entire
+                               container is clickable.
+                            3. You can also style the element immediately *after* one matching a
+                               given selector using the `+` (adjacent sibling) selector.
+
+                            With all that in mind, here's the hack. We use *hidden* radio input
+                            elements to toggle state on the page. Those get wrapped in `<label>`
+                            elements styled however we like. For example, the "button" to show the
+                            nav menu up left is just a `<label>` with an `<input type="radio">`
+                            (hidden) inside it.
+
+                            Immediately after these hidden inputs in the DOM we have the elements
+                            we want to show. For example, after the nav elements are `<section>`
+                            containers (such as this one). Then in the CSS the `section` element is
+                            hidden by default, unless it is immediately after a checked input:
+
+                            ```
+                            section {
+                                display: none;
+                            }
+
+                            input[type="radio"]:checked + section {
+                                display: block;
+                            }
+                            ```
+
+                            So that's the basic idea. You can take a closer look at the HTML and CSS
+                            to fully understand it.
+                            --></script>
                         </section>
 
-                        <span class="section-link">Second section</span>
+                        <span class="section-link">How it works</span>
                     </label>
                 </li>
             </ul>

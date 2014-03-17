@@ -1,3 +1,7 @@
+body {
+  font-size: 150%;
+}
+
 label {
   display: block;
 }
@@ -45,8 +49,9 @@ nav {
   bottom: 0;
   left: -245px;
   width: 200px;
-
   padding: 20px;
+
+  font-family: sans-serif;
   border-right: 5px solid #000;
 
   /* Make the nav cover up the body */
