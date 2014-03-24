@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Single-page nav without JS</title>
+  <title>Without JS</title>
   <link rel="stylesheet" href="nav.css" />
 </head>
 
@@ -68,13 +68,13 @@
                   the entire container is clickable.
                 </li>
                 <li>
-                  You can also style the element immediately <em>after</em>one matching a given
+                  You can also style the element immediately <em>after</em> one matching a given
                   selector using the <code>+</code> (adjacent sibling) selector.
                 </li>
               </ol>
 
               <p>
-                With all that in mind, here's the hack. We use <em>hidden</em>radio input elements
+                With all that in mind, here's the hack. We use <em>hidden</em> radio input elements
                 to toggle state on the page. Those get wrapped in <code>&lt;label&gt;</code>
                 elements styled however we like. For example, the "button" to show the nav menu up
                 left is just a <code>&lt;label&gt;</code> with an
@@ -95,6 +95,24 @@ input[type="radio"]:checked + section { display: block; }</pre>
             </section>
 
             <span class="section-link">How it works</span>
+          </label>
+        </li>
+
+        <li>
+          <label>
+            <input name="section" value="Learn more" type="radio" />
+
+            <section id="learn-more">
+              <h1>Learn more</h1>
+
+              <p>
+                If you want to understand this better, you can always
+                <a href="https://github.com/dtao/withoutjs">read the code</a> (or
+                <a href="https://github.com/dtao/withoutjs/issues">ask me question</a>)!
+              </p>
+            </section>
+
+            <span class="section-link">Learn more</span>
           </label>
         </li>
       </ul>
