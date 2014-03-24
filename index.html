@@ -8,95 +8,78 @@
 
 <body>
 
-<label id="content-wrapper">
-    <input name="nav-toggle" value="hidden" type="radio" />
+<!-- Another wrapper so the #show-nav <span> is clickable. -->
+<label id="nav-wrapper">
 
-    <label id="nav-wrapper">
-        <input name="nav-toggle" value="shown" type="radio" />
+    <!-- This one shows the nav. -->
+    <input name="nav-toggle" value="shown" type="radio" />
 
-        <nav>
-            <ul>
-                <li>
-                    <label>
-                        <input name="section" value="Introduction" type="radio" checked="checked" />
+    <nav>
+        <ul>
+            <li>
+                <label>
+                    <input name="section" value="Introduction" type="radio" checked="checked" />
 
-                        <section>
-                            <script type="text/markdown"><!--
-                            # Nav without JS
+                    <section>
+                        <h1 id="nav-without-js">Nav without JS</h1>
+                        <p>This page is an illustration of a hack I came up a while ago, to provide familiar single-page
+                        navigation behavior (you know, click a link and the visible section changes) without JavaScript
+                        enabled.</p>
+                        <p>You can see for yourself that this doesn&#39;t require JS: just check the source (no <code>&lt;script&gt;</code> tags!).
+                        If you&#39;re still skeptical, go ahead and disable JavaScript in your browser and refresh the page.</p>
+                        <p>Of course, it&#39;s really just a gimmick because the hack <em>does</em> require a modern browser (for CSS3
+                        support). Which means it almost certainly doesn&#39;t make sense to use in production.</p>
+                        <p>Anyway, the hack is one I haven&#39;t seen illustrated elsewhere. That doesn&#39;t mean no one else has come
+                        up with it. Go ahead and check out the next section to learn how it works.</p>
+                    </section>
 
-                            This page is an illustration of a hack I came up a while ago, to provide
-                            familiar single-page navigation behavior (you know, click a link and the
-                            visible section changes) without JavaScript enabled.
+                    <span class="section-link">Introduction</span>
+                </label>
+            </li>
 
-                            You can see for yourself that this doesn't require JS: just check the
-                            source (no `<script>` tags!). If you're still skeptical, go ahead and
-                            disable JavaScript in your browser and refresh the page.
+            <li>
+                <label>
+                    <input name="section" value="How it works" type="radio" />
 
-                            Of course, it's really just a gimmick because the hack *does* require a
-                            modern browser (for CSS3 support). Which means it almost certainly
-                            doesn't make sense to use in production.
+                    <section>
+                        <h1 id="how-it-works">How it works</h1>
+                        <p>There are basically three parts to this hack:</p>
+                        <ol>
+                        <li>You can conditionally style checkbox and radio input elements based on the <code>:checked</code>
+                        pseudo-selector.</li>
+                        <li>If you wrap a checkbox or radio input in a <code>&lt;label&gt;</code>, the entire container is clickable.</li>
+                        <li>You can also style the element immediately <em>after</em> one matching a given selector using the <code>+</code>
+                        (adjacent sibling) selector.</li>
+                        </ol>
+                        <p>With all that in mind, here&#39;s the hack. We use <em>hidden</em> radio input elements to toggle state on the
+                        page. Those get wrapped in <code>&lt;label&gt;</code> elements styled however we like. For example, the &quot;button&quot; to
+                        show the nav menu up left is just a <code>&lt;label&gt;</code> with an <code>&lt;input type=&quot;radio&quot;&gt;</code> (hidden) inside it.</p>
+                        <p>Immediately after these hidden inputs in the DOM we have the elements we want to show. For example,
+                        after the nav elements are <code>&lt;section&gt;</code> containers (such as this one). Then in the CSS the <code>section</code>
+                        element is hidden by default, unless it is immediately after a checked input:</p>
+                        <pre><code class="lang-css">section {
+display: none;
+}
 
-                            Anyway, the hack is one I haven't seen illustrated elsewhere. That
-                            doesn't mean no one else has come up with it. Go ahead and check out the
-                            next section to learn how it works.
-                            --></script>
-                        </section>
+input[type=&quot;radio&quot;]:checked + section {
+display: block;
+}
+</code></pre>
+                        <p>So that&#39;s the basic idea. You can take a closer look at the HTML and CSS to fully understand it.</p>
+                    </section>
 
-                        <span class="section-link">Introduction</span>
-                    </label>
-                </li>
+                    <span class="section-link">How it works</span>
+                </label>
+            </li>
+        </ul>
+    </nav>
 
-                <li>
-                    <label>
-                        <input name="section" value="How it works" type="radio" />
-
-                        <section>
-                            <script type="text/markdown"><!--
-                            # How it works
-
-                            There are basically three parts to this hack:
-
-                            1. You can conditionally style checkbox and radio input elements based
-                               on the `:checked` pseudo-selector.
-                            2. If you wrap a checkbox or radio input in a `<label>`, the entire
-                               container is clickable.
-                            3. You can also style the element immediately *after* one matching a
-                               given selector using the `+` (adjacent sibling) selector.
-
-                            With all that in mind, here's the hack. We use *hidden* radio input
-                            elements to toggle state on the page. Those get wrapped in `<label>`
-                            elements styled however we like. For example, the "button" to show the
-                            nav menu up left is just a `<label>` with an `<input type="radio">`
-                            (hidden) inside it.
-
-                            Immediately after these hidden inputs in the DOM we have the elements
-                            we want to show. For example, after the nav elements are `<section>`
-                            containers (such as this one). Then in the CSS the `section` element is
-                            hidden by default, unless it is immediately after a checked input:
-
-                            ```
-                            section {
-                                display: none;
-                            }
-
-                            input[type="radio"]:checked + section {
-                                display: block;
-                            }
-                            ```
-
-                            So that's the basic idea. You can take a closer look at the HTML and CSS
-                            to fully understand it.
-                            --></script>
-                        </section>
-
-                        <span class="section-link">How it works</span>
-                    </label>
-                </li>
-            </ul>
-        </nav>
-
-        <span id="show-nav">&equiv;</span>
+    <label id="overlay">
+        <!-- This hidden element *hides* the nav. -->
+        <input name="nav-toggle" value="hidden" type="radio" />
     </label>
+
+    <span id="show-nav">&equiv;</span>
 </label>
 
 </body>

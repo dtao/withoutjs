@@ -62,7 +62,7 @@ nav {
   transition: left 0.5s;
 }
 
-#nav-wrapper input:checked + nav {
+#nav-wrapper input[name="nav-toggle"]:checked + nav {
   left: 0;
 
   /* Slide in */
@@ -75,6 +75,25 @@ nav ul {
   margin: 0;
 }
 
+#overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 245px;
+  right: 0;
+
+  background-color: #fff;
+  opacity: 0.0;
+  z-index: 10;
+
+  /* Hide the overlay unless the nav is expanded */
+  display: none;
+}
+
+input[name="nav-toggle"]:checked + nav + #overlay {
+  display: block;
+}
+
 section {
   display: none;
 
@@ -82,8 +101,9 @@ section {
   top: 0;
   left: 245px;
   right: 245px;
-
   padding: 20px;
+
+  font-family: serif;
 }
 
 input[name="section"]:checked + section {
