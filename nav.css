@@ -1,5 +1,16 @@
 body {
+  font-family: Cambria, Georgia, serif;
   font-size: 150%;
+}
+
+del {
+  color: #888;
+}
+
+/* Bootstrap, you've ruined me forever. */
+code {
+  color: #c7254e;
+  background-color: #f9f2f4;
 }
 
 label {
